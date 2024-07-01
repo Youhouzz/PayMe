@@ -1,0 +1,24 @@
+<div th:insert="menu">
+
+</div>
+
+transactionsPage
+
+
+<table th:each="virement: ${virements}">
+	<tr>
+	              <th>Vendor</th>
+				  <th>Date</th>
+
+	              <th>Amount</th>
+	              <th>Label</th>
+	 </tr>
+	<tr>
+		<td th:text="${virement.user.name}"></td>
+
+		<td th:text="${virement.date}"></td>
+
+        <td th:text="${virement.amount}"></td>
+        <td th:text="${virement.label}"></td>
+    </tr>
+</table>

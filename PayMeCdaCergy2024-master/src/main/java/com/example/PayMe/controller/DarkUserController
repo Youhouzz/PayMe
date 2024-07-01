@@ -1,0 +1,23 @@
+@Controller
+@RequestMapping("/darkuser")
+@PreAuthorize("hasRole('ROLE_DARKADMIN')")
+public class DarkUserController {
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping
+    public String getDarkUserPage(Model model) {
+        List<User> users = userService.findAllUsers();
+        User darkUser = userService.findByUsername("DarKUseR");
+        model.addAttribute("users", users);
+        model.addAttribute("darkUser", darkUser);
+        return "darkuser";
+    }
+
+    @PostMapping("/pillage")
+    public String pillageUser(@RequestParam Long userId, @RequestParam BigDecimal amount) {
+        userService.pillageUser(userId, amount);
+        return "redirect:/darkuser";
+    }
+}

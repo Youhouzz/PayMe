@@ -1,0 +1,20 @@
+<div xmlns:sec="http://www.w3.org/1999/xhtml" >
+
+
+<a th:href="@{/}"> Home</a>
+<div sec:authorize="isAnonymous">
+    <a th:href="@{/login}">Login</a>
+</div>
+<div sec:authorize="isAuthenticated">
+    <div sec:authorize="!hasRole('ROLE_ADMIN')" >
+        <a th:href="@{/transactions}">Transactions</a>
+        <a th:href="@{/virements}">Virement</a>
+        <a th:href="@{/logout}">Logout</a>
+        <a th:href="@{/user}">User</a>
+    </div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')" >
+        <a th:href="@{/logout}">Logout</a>
+        <a th:href="@{/admin}">Admin</a>
+    </div>
+</div>
+</div>
